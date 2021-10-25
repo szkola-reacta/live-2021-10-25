@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function Hello({ condition }) {
   // const [name, setName] = useState(() => {
@@ -6,6 +6,12 @@ function Hello({ condition }) {
   // });
   const [name, setName] = useState(window.localStorage.getItem("name") || "");
   const emailFieldRef = useRef(null);
+  useEffect(() => {
+    if (emailFieldRef.current) {
+      emailFieldRef.current.focus();
+    }
+  // }); // no dependecy array 🙈
+  }, []); // no dependecy array
   const handleNameChange = (event) => {
     setName(event.target.value)
   }
